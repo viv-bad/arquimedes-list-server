@@ -16,7 +16,7 @@ const App = () => {
     // console.log(data);
 
     axios
-      .get("http://localhost:3001/getItems")
+      .get("https://arquimedes-list-api.onrender.com/getItems")
       .then((res) => setItems(res.data))
       .catch((err) => console.log(err));
   };
@@ -26,9 +26,12 @@ const App = () => {
   }, []);
 
   const createItem = async (item) => {
-    const response = await axios.post("http://localhost:3001/createItem", {
-      item,
-    });
+    const response = await axios.post(
+      "https://arquimedes-list-api.onrender.com/createItem",
+      {
+        item,
+      }
+    );
 
     const { data } = response;
 
@@ -45,7 +48,9 @@ const App = () => {
 
   const deleteItemById = async (itemId) => {
     // REMEMBER: in mongodb, id is saved as _id instead!!
-    await axios.delete(`http://localhost:3001/deleteItem/${itemId}`);
+    await axios.delete(
+      `https://arquimedes-list-api.onrender.com/deleteItem/${itemId}`
+    );
 
     const updatedItems = items.filter((item) => {
       return item._id !== itemId;
@@ -57,7 +62,7 @@ const App = () => {
   const editItemById = async (itemId, newItem) => {
     // Remember: In an axios patch request, the second argument after the url is the original object (key) (taken from Schema in backend) and the new object you want to replace it with (value). THIS second argument is the data (payload) that goes back to the database.
     const response = await axios.patch(
-      `http://localhost:3001/updateItem/${itemId}`,
+      `https://arquimedes-list-api.onrender.com/updateItem/${itemId}`,
       { item: newItem }
     );
 
@@ -83,7 +88,7 @@ const App = () => {
   const toggleCompleted = async (itemId, isItemCompleted) => {
     // access database and patch completed with either true or false, based on the argument isItemCompleted
     const response = await axios.patch(
-      `http://localhost:3001/completeItem/${itemId}`,
+      `https://arquimedes-list-api.onrender.com/completeItem/${itemId}`,
       { completed: isItemCompleted }
     );
 
@@ -109,7 +114,7 @@ const App = () => {
 
   const toggleVivek = async (itemId, personSelected) => {
     const response = await axios.patch(
-      `http://localhost:3001/assignItemToPerson/${itemId}`,
+      `https://arquimedes-list-api.onrender.com/assignItemToPerson/${itemId}`,
       { vivek: personSelected }
     );
 
@@ -130,7 +135,7 @@ const App = () => {
 
   const toggleKhadija = async (itemId, personSelected) => {
     const response = await axios.patch(
-      `http://localhost:3001/assignItemToPerson/${itemId}`,
+      `https://arquimedes-list-api.onrender.com/assignItemToPerson/${itemId}`,
       { khadija: personSelected }
     );
 
